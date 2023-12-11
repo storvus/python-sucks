@@ -1,0 +1,18 @@
+[Unit]
+Description=gunicorn daemon
+Requires=pythonsucks.socket
+After=network.target
+
+[Service]
+User=torvus
+Group=www-data
+WorkingDirectory=/home/torvus/projects/python-sucks
+ExecStart=/home/torvus/projects/python-sucks/venv/bin/gunicorn \
+	--access-logfile - \
+  	--error-logfile - \
+  	--workers 2 \
+    --bind unix:/run/pythonsucks.gunicorn.sock \
+  	pythonsucks.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
