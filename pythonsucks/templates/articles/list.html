@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+{% load excerpt %}
+{% block content %}
+    {% for article in article_list %}
+        <article>
+            <div class="post-image">
+                <div class="post-heading">
+                    <h3><a href="{% url 'article:detail' article.slug %}">{{ article.title }}</a></h3>
+                    <span class="blog-date">{{ article.publish_date|date:"N d, Y" }}</span>
+                </div>
+            </div>
+            {{ article.body|excerpt|safe }}
+            <div class="bottom-article">
+                <ul class="meta-post">
+                    <li>
+                        {% for tag in article.tags.all %}
+                            <a href="{% url 'article:tag' tag %}">#{{ tag }}{% if not forloop.last %},{% endif %}</a>
+                        {% endfor %}
+                    </li>
+                    <li>
+                        <a href="{% url 'article:detail' article.slug %}">CONTINUE READING</a>
+                    </li>
+                    <li>
+                        <a href="#" data-placement="top" title="behance"><i class="fa fa-behance"></i></a>
+                        <a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" data-placement="top" title="google"><i class="fa fa-google-plus"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </article>
+    {% endfor %}
+    {% if paginator.num_pages > 1 %}
+        <div id="pagination">
+            {% if page_obj.has_previous %}
+                <a class="previous" href="{% url 'article:home' %}?page={{ page_obj.previous_page_number }}">&lt; Earlier POSTS</a>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <a class="next" href="{% url 'article:home' %}?page={{ page_obj.next_page_number }}">OLDER POSTS &gt;</a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock content %}

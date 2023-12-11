@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Python Sucks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "css/blog.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="wrapper">
+    <!-- start header -->
+    <header>
+
+        <div class="navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'article:home' %}">Python Sucks</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="sub-title">PERSONAL BLOG</div>
+            <div class="bradcum"><span class="author-font"><i>Category:</i></span> <b>Programming</b>
+            </div>
+        </div>
+
+        <nav class="navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-collapse collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <div class="menu-line">
+                                <a href="{% url 'article:home' %}">Home</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="menu-line">
+                                <a href="#">Interviews</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="menu-line">
+                                <a href="#">LeetCode</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="menu-line">
+                                <a href="#">Skill</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="menu-line">
+                                <a href="#">Books</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="menu-line">
+                                <a href="http://programming-motherfucker.com/" rel="nofollow noopener">Manifest</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- end header -->
+    <div id="content" class="blog-list">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div id="sub-footer">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                        <div class="footer-divider"></div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5 col-lg-6">
+                        <ul class="social-network">
+                            <li><a href="#" data-placement="top" title="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#" data-placement="top" title="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#" data-placement="top" title="" data-original-title="Dribbble"><i class="fa fa-dribbble"></i></a>
+                            </li>
+                            <li><a href="#" data-placement="top" title="" data-original-title="Google plus"><i class="fa fa-google-plus"></i></a>
+                            </li>
+                            <li><a href="#" data-placement="top" title="" data-original-title="Twitter"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                            <li><a href="#" data-placement="top" title="" data-original-title="Dribbble"><i class="fa fa-pinterest"></i></a>
+                            </li>
+                            <li><a href="#" data-placement="top" title="" data-original-title="Behance"><i class="fa fa-behance"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-lg-6">
+                        <div class="copyright">
+                            <p>
+                                <span>All Rights Reserved. Designed and Developed By </span><a href="#">John Doe</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+</div>
+</body>
+</html>

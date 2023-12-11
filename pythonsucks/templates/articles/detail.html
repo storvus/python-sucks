@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% load excerpt %}
+{% block content %}
+    <article>
+        <div class="post-image">
+            <div class="post-heading">
+                <h3><a href="">{{ article.title }}</a></h3>
+                <a href="#" class="blog-date">{{ article.publish_date|date:"N d, Y" }}</a>
+            </div>
+        </div>
+        {{ article.body|safe }}
+    </article>
+{% endblock content %}
