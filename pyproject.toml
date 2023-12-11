@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-sucks"
+name = "pythonsucks"
 version = "0.1.0"
 description = ""
 authors = ["storvus <anton.scherbatov@invitae.com>"]
