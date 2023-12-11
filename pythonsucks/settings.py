@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = (root("static"),)
-STATIC_ROOL = root("collected_static")
+STATIC_ROOT = root("collected_static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
