@@ -15,7 +15,7 @@ REPO_DIR = dirname(PROJECT_DIR)
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", False)
 
 ALLOWED_HOSTS = ["localhost", "blog.storv.us"]
 
@@ -123,7 +123,7 @@ STATICFILES_DIRS = (
     root("static"),
     os.path.join(REPO_DIR, 'static/'),
 )
-STATIC_ROOT = os.path.join(REPO_DIR, 'static/')
+STATIC_ROOT = "/var/www/html/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
