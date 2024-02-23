@@ -34,8 +34,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "pythonsucks.article",
-    "ckeditor",
     "taggit",
+    "ckeditor",
+    "ckeditor_uploader",
 ]
 
 MIDDLEWARE = [
@@ -124,12 +125,15 @@ STATICFILES_DIRS = (
     os.path.join(REPO_DIR, 'static/'),
 )
 STATIC_ROOT = "/var/www/html/static"
+MEDIA_ROOT = os.path.join(REPO_DIR, "media/")
+MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# ckeditor
 CUSTOM_TOOLBAR = [
     {
         "name": "document",
@@ -182,6 +186,8 @@ CUSTOM_TOOLBAR = [
     },
 ]
 
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "ckeditor_uploader.backends.PillowBackend"
 
 CKEDITOR_CONFIGS = {
     "default": {
