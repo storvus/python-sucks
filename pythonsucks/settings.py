@@ -125,7 +125,7 @@ STATICFILES_DIRS = (
     os.path.join(REPO_DIR, 'static/'),
 )
 STATIC_ROOT = "/var/www/html/static"
-MEDIA_ROOT = os.path.join(REPO_DIR, "media/")
+MEDIA_ROOT = "/var/www/html/media"
 MEDIA_URL = "/media/"
 
 # Default primary key field type
