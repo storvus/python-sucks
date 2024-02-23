@@ -1,4 +1,3 @@
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 
 from pythonsucks.article.views import ArticleListView, ArticleDetailView
@@ -10,5 +9,3 @@ urlpatterns = [
     path("tag/<str:tag>/", ArticleListView.as_view(), name="tag"),
     path("article/<slug:slug>/", ArticleDetailView.as_view(), name="detail"),
 ]
-
-urlpatterns += staticfiles_urlpatterns()
