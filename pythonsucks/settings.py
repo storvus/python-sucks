@@ -170,6 +170,7 @@ CUSTOM_TOOLBAR = [
             "-",
             "Link",
             "Unlink",
+            "Anchor",
             "-",
             "Image",
             "CodeSnippet",
