@@ -588,6 +588,7 @@ ul.meta-post li a {
     color: #666666;
     font-weight: 600;
     letter-spacing: 2px;
+    margin-right: 10px;
 }
 /* --- single post --- */
 
@@ -1256,14 +1257,18 @@ article .post-heading h3 a {
     font-size: 36px;
     font-weight: bold;
 }
-ul.meta-post li:first-child,
-ul.meta-post li:last-child {
+ul.meta-post li:first-child {
     width: 37%;
 }
+ul.meta-post li:last-child {
+    width: 63%;
+    padding-right: 25px;
+}
+
 ul.meta-post li {
     width: 26%;
     padding: 13px 0;
-    text-align: center;
+    /*text-align: center;*/
     font-family: "Lato";
     font-weight: bold;
     letter-spacing: 1px;

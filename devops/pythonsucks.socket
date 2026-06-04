@@ -1,8 +1,0 @@
-[Unit]
-Description=pythonsucks socket
-
-[Socket]
-ListenStream=/run/pythonsucks.gunicorn.sock
-
-[Install]
-WantedBy=sockets.target
