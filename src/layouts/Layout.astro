@@ -2,101 +2,167 @@
 const { pageTitle } = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<link rel="icon" href="/favicon.ico" />
-	<meta name="generator" content={Astro.generator} />
-	<title>{pageTitle}</title>
-	<link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="/static/css/blog.css" rel="stylesheet" type="text/css" />
-	<link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{pageTitle}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 </head>
 <body>
-<div id="wrapper">
-	<!-- start header -->
-	<header>
+  <header>
+    <nav>
+      <a href="/" class="logo">python sucks &gt;_</a>
+      <div class="nav-right">
+        <!--<a href="/posts">posts</a>-->
+        <!--<a href="/about">about</a>-->
+        <a href="https://programming-motherfucker.com/">манифест</a>
+        <button class="icon-btn theme-toggle" aria-label="Toggle theme" title="Toggle dark mode">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+        <a href="https://github.com/storvus/python-sucks/tree/main/src/content/posts" class="icon-btn" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+    </nav>
+  </header>
 
-		<div class="navbar-default">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/">Python Sucks</a>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="sub-title">&nbsp;</div>
-			<div class="bradcum"><span class="author-font"><i>Category:</i></span> <b>Programming</b>
-			</div>
-		</div>
+  <main>
+    <slot />
+  </main>
 
-		<nav class="navbar-default navbar-static-top">
-			<div class="container">
-				<div class="navbar-collapse collapse" id="navbar-collapse">
-					<!--<ul class="nav navbar-nav">-->
-					<!--	<li>-->
-					<!--		<div class="menu-line">-->
-					<!--			<a href="/">Home</a>-->
-					<!--		</div>-->
-					<!--	</li>-->
-					<!--	<li>-->
-					<!--		<div class="menu-line">-->
-					<!--			<a href="#">Interviews</a>-->
-					<!--		</div>-->
-					<!--	</li>-->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo">python sucks &gt;_</a>
+        <p>Честно о Python.<br/>Без хайпа и розовых очков.</p>
+      </div>
+      <div class="footer-social">
+        <!--<a href="#" class="icon-btn" aria-label="Telegram">-->
+        <!--  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">-->
+        <!--    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>-->
+        <!--  </svg>-->
+        <!--</a>-->
+        <!--<a href="#" class="icon-btn" aria-label="Twitter">-->
+        <!--  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">-->
+        <!--    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>-->
+        <!--  </svg>-->
+        <!--</a>-->
+        <a href="/rss.xml" class="icon-btn" aria-label="RSS">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
 
-					<!--	<li>-->
-					<!--		<div class="menu-line">-->
-					<!--			<a href="#">LeetCode</a>-->
-					<!--		</div>-->
-					<!--	</li>-->
-					<!--	<li>-->
-					<!--		<div class="menu-line">-->
-					<!--			<a href="#">Skill</a>-->
-					<!--		</div>-->
-					<!--	</li>-->
-					<!--	<li>-->
-					<!--		<div class="menu-line">-->
-					<!--			<a href="#">Books</a>-->
-					<!--		</div>-->
-					<!--	</li>-->
+  <script>
+    const btn = document.querySelector('.theme-toggle') as HTMLButtonElement;
+    const moon = document.querySelector('.icon-moon') as SVGElement;
+    const sun = document.querySelector('.icon-sun') as SVGElement;
+    const html = document.documentElement;
 
-					<!--	<li>-->
-					<!--		<div class="menu-line">-->
-					<!--			<a href="http://programming-motherfucker.com/" rel="nofollow noopener">Manifest</a>-->
-					<!--		</div>-->
-					<!--	</li>-->
-					<!--</ul>-->
-				</div>
-			</div>
-		</nav>
-	</header>
-	<!-- end header -->
-	<div id="content" class="blog-list">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<slot />
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    if (localStorage.theme === 'dark') {
+      html.dataset.theme = 'dark';
+      moon.style.display = 'none';
+      sun.style.display = 'block';
+    }
+
+    btn?.addEventListener('click', () => {
+      const dark = html.dataset.theme === 'dark';
+      html.dataset.theme = dark ? '' : 'dark';
+      localStorage.theme = dark ? 'light' : 'dark';
+      moon.style.display = dark ? 'block' : 'none';
+      sun.style.display = dark ? 'none' : 'block';
+    });
+  </script>
 </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  :root {
+    --bg: #f5f1e8;
+    --fg: #1a1a1a;
+    --muted: #777;
+    --border: #d4cfc4;
+    --max-w: 860px;
+    --font: 'Space Mono', monospace;
+    --snake-display: inline-block;
+    --snake-inverted-display: none;
+  }
+  [data-theme="dark"] {
+    --bg: #1c1c1a;
+    --fg: #ede9dc;
+    --muted: #888;
+    --border: #2e2e2a;
+    --snake-display: none;
+    --snake-inverted-display: inline-block;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 14px; line-height: 1.7; }
+  body { min-height: 100vh; background: var(--bg); color: var(--fg); transition: background 0.2s, color 0.2s; }
+
+  a { color: inherit; text-decoration: none; }
+  a:hover { opacity: 0.7; }
+
+  /* Nav */
+  header { border-bottom: 1px solid var(--border); }
+  nav {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+  }
+  .logo { font-weight: 700; font-size: 14px; letter-spacing: 0.02em; }
+  .nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .nav-right > a:not(.icon-btn) { font-size: 13px; }
+
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--fg);
+    padding: 4px;
+    line-height: 0;
+  }
+  .icon-btn:hover { opacity: 0.7; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); margin-top: 80px; }
+  .footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 40px 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .footer-brand .logo { display: inline-block; margin-bottom: 8px; }
+  .footer-brand p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+  .footer-social { display: flex; align-items: center; gap: 4px; padding-top: 4px; }
 </style>

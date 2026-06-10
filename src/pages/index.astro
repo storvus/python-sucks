@@ -1,9 +1,112 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Blog from '../components/Blog.astro';
-const pageTitle = 'Python Sucks';
 ---
 
-<Layout pageTitle={pageTitle}>
-	<Blog />
+<Layout pageTitle="Python Sucks">
+  <section class="hero">
+    <div class="hero-text">
+      <p class="section-label">&gt; welcome to</p>
+      <h1 class="hero-heading">python<br/>sucks</h1>
+      <p class="hero-desc">Почему Python <span class="hero-mixed-message">не</span> так хорош,<br/>как о нём говорят.</p>
+    </div>
+    <div class="hero-image">
+      <Image src="/images/snake.png" width={312} height={352} alt="Унылая змея говорит: meh." class="snake" />
+      <Image src="/images/snake-invert.png" width={312} height={352} alt="Унылая змея говорит: meh." class="snake-inverted" />
+    </div>
+  </section>
+  <Blog />
 </Layout>
+
+<style>
+    .snake {
+        display: var(--snake-display);
+    }
+    .snake-inverted {
+        display: var(--snake-inverted-display);
+    }
+
+  .hero {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 64px 24px 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .section-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .hero-heading {
+    font-size: clamp(60px, 10vw, 90px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--fg);
+    color: var(--bg);
+    padding: 14px 22px;
+    font-size: 13px;
+    font-family: var(--font);
+    letter-spacing: 0.04em;
+    border: 2px solid var(--fg);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .cta-btn:hover {
+    opacity: 1;
+    background: transparent;
+    color: var(--fg);
+  }
+
+  .hero-image {
+    flex: 0 0 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hero-mixed-message {
+      text-decoration: line-through;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      flex-direction: column;
+      padding: 40px 24px 48px;
+    }
+    .hero-image {
+      flex: none;
+      width: 200px;
+      align-self: center;
+    }
+  }
+</style>
