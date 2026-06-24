@@ -1,31 +1,31 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from '../layouts/Layout.astro';
-import Blog from '../components/Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+import Blog from '../../components/Blog.astro';
 ---
 
-<Layout pageTitle="Python Sucks" locale="ru">
+<Layout pageTitle="Python Sucks" locale="en">
   <section class="hero">
     <div class="hero-text">
       <p class="section-label">&gt; welcome to</p>
       <h1 class="hero-heading">python<br/>sucks</h1>
-      <p class="hero-desc">Почему Python <span class="hero-mixed-message">не</span> так хорош,<br/>как о нём говорят.</p>
+      <p class="hero-desc">Why Python is <span class="hero-mixed-message">not</span> as good<br/>as they say.</p>
     </div>
     <div class="hero-image">
-      <Image src="/images/snake.png" width={312} height={352} alt="Унылая змея говорит: meh." class="snake" />
-      <Image src="/images/snake-invert.png" width={312} height={352} alt="Унылая змея говорит: meh." class="snake-inverted" />
+      <Image src="/images/snake.png" width={312} height={352} alt="A sad snake says: meh." class="snake" />
+      <Image src="/images/snake-invert.png" width={312} height={352} alt="A sad snake says: meh." class="snake-inverted" />
     </div>
   </section>
-  <Blog locale="ru" />
+  <Blog locale="en" />
 </Layout>
 
 <style>
-    .snake {
-        display: var(--snake-display);
-    }
-    .snake-inverted {
-        display: var(--snake-inverted-display);
-    }
+  .snake {
+    display: var(--snake-display);
+  }
+  .snake-inverted {
+    display: var(--snake-inverted-display);
+  }
 
   .hero {
     max-width: var(--max-w);
@@ -63,25 +63,6 @@ import Blog from '../components/Blog.astro';
     margin-bottom: 32px;
   }
 
-  .cta-btn {
-    display: inline-block;
-    background: var(--fg);
-    color: var(--bg);
-    padding: 14px 22px;
-    font-size: 13px;
-    font-family: var(--font);
-    letter-spacing: 0.04em;
-    border: 2px solid var(--fg);
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-  }
-
-  .cta-btn:hover {
-    opacity: 1;
-    background: transparent;
-    color: var(--fg);
-  }
-
   .hero-image {
     flex: 0 0 300px;
     display: flex;
@@ -95,7 +76,7 @@ import Blog from '../components/Blog.astro';
   }
 
   .hero-mixed-message {
-      text-decoration: line-through;
+    text-decoration: line-through;
   }
 
   @media (max-width: 640px) {

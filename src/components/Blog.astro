@@ -1,35 +1,57 @@
 ---
 import { getCollection } from 'astro:content';
+import { getCategoryLabel, getPostCategory } from '../data/categories';
+import { useTranslations, type Locale } from '../i18n/index';
 
 interface Props {
   limit?: number;
+  locale?: Locale;
 }
-const { limit = 5 } = Astro.props;
+const { limit = 5, locale = 'ru' } = Astro.props;
+const t = useTranslations(locale);
 
-const posts = (await getCollection('posts'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, limit);
+const allPosts = (await getCollection('posts'))
+  .filter(p => p.id.split('/')[1] === locale)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = allPosts.slice(0, limit);
+const hasMore = allPosts.length > limit;
 
+const dateLocale = locale === 'ru' ? 'ru-RU' : 'en-US';
 const formatDate = (date: Date) =>
-  new Date(date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' });
+  new Date(date).toLocaleDateString(dateLocale, { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 
 <section class="posts-section">
-  <p class="section-label">&gt; последние статьи</p>
+  <p class="section-label">{t('blog.latest')}</p>
   <ul class="post-list">
-    {posts.map(post => (
-      <li>
-        <a href={`/posts/${post.id}/`} class="post-item">
-          <div class="post-row">
-            <h2 class="post-title">{post.data.title}</h2>
-            <span class="post-date">{formatDate(post.data.pubDate)}</span>
-            <span class="post-arrow" aria-hidden="true">→</span>
-          </div>
-          <p class="post-desc">{post.data.description}</p>
-        </a>
-      </li>
-    ))}
+    {posts.map(post => {
+      const category = getPostCategory(post.id);
+      const [cat, , slug] = post.id.split('/');
+      const href = locale === 'ru'
+        ? `/posts/${cat}/${slug}/`
+        : `/en/posts/${cat}/${slug}/`;
+      return (
+        <li>
+          <a href={href} class="post-item">
+            <div class="post-row">
+              <h2 class="post-title">{post.data.title}</h2>
+              <span class="post-date">{formatDate(post.data.pubDate)}</span>
+              <span class="post-arrow" aria-hidden="true">→</span>
+            </div>
+            {category && (
+              <span class="post-cat">{getCategoryLabel(category, locale)}</span>
+            )}
+            <p class="post-desc">{post.data.description}</p>
+          </a>
+        </li>
+      );
+    })}
   </ul>
+  {hasMore && (
+    <div class="view-all">
+      <a href={locale === 'ru' ? '/all-posts' : '/en/all-posts'}>{t('blog.view-all')}</a>
+    </div>
+  )}
 </section>
 
 <style>
@@ -91,6 +113,16 @@ const formatDate = (date: Date) =>
     color: var(--muted);
     font-size: 15px;
     flex-shrink: 0;
+  }
+
+  .post-cat {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 1px 8px;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
   }
 
   .post-desc {

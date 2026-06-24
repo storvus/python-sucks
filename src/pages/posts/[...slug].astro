@@ -1,26 +1,30 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/index';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  return posts.map(post => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  return posts
+    .filter(p => p.id.split('/')[1] === 'ru')
+    .map(post => {
+      const [cat, , slug] = post.id.split('/');
+      return { params: { slug: `${cat}/${slug}` }, props: { post } };
+    });
 }
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const t = useTranslations('ru');
 
 const formatDate = (date: Date) =>
   new Date(date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 
-<Layout pageTitle={post.data.title}>
+<Layout pageTitle={post.data.title} locale="ru">
   <article class="post">
     <div class="post-header">
-      <a href="/" class="back">&lt; на главную</a>
+      <a href="/" class="back">{t('post.back')}</a>
       <h1>{post.data.title}</h1>
       <p class="post-date">{formatDate(post.data.pubDate)}</p>
     </div>

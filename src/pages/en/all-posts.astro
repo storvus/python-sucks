@@ -1,0 +1,186 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { getCategoryLabel, getPostCategory } from '../../data/categories';
+import { useTranslations } from '../../i18n/index';
+
+const locale = 'en';
+const t = useTranslations(locale);
+
+const allPosts = (await getCollection('posts'))
+  .filter(p => p.id.split('/')[1] === locale)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const postsWithMeta = allPosts.map(post => {
+  const [cat, , slug] = post.id.split('/');
+  return { ...post, category: getPostCategory(post.id), href: `/en/posts/${cat}/${slug}/` };
+});
+
+const usedCategories = [...new Set(postsWithMeta.map(p => p.category))].filter(Boolean) as string[];
+
+const formatDate = (date: Date) =>
+  new Date(date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+
+<Layout pageTitle="All articles - python sucks" locale="en">
+  <div class="page">
+    <div class="page-header">
+      <p class="section-label">{t('posts.heading')}</p>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">{t('posts.filter-all')}</button>
+      {usedCategories.map(cat => (
+        <button class="filter-btn" data-filter={cat}>
+          {getCategoryLabel(cat, locale)}
+        </button>
+      ))}
+    </div>
+
+    <ul class="post-list">
+      {postsWithMeta.map(post => (
+        <li class="post-item" data-category={post.category ?? ''}>
+          <a href={post.href} class="post-link">
+            <div class="post-row">
+              <h2 class="post-title">{post.data.title}</h2>
+              <span class="post-date">{formatDate(post.data.pubDate)}</span>
+              <span class="post-arrow" aria-hidden="true">→</span>
+            </div>
+            {post.category && (
+              <span class="post-cat">{getCategoryLabel(post.category, locale)}</span>
+            )}
+            <p class="post-desc">{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = document.querySelectorAll<HTMLLIElement>('.post-item');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter ?? 'all';
+      items.forEach(item => {
+        const match = filter === 'all' || item.dataset.category === filter;
+        item.classList.toggle('hidden', !match);
+      });
+    });
+  });
+</script>
+
+<style>
+  .page {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .page-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .filter-btn {
+    font-family: var(--font);
+    font-size: 12px;
+    padding: 5px 14px;
+    border: 1px solid var(--border);
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    border-color: var(--fg);
+    color: var(--fg);
+  }
+
+  .post-list {
+    list-style: none;
+  }
+
+  .post-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-item.hidden {
+    display: none;
+  }
+
+  .post-link {
+    display: block;
+    padding: 22px 0;
+    color: inherit;
+  }
+
+  .post-link:hover { opacity: 1; }
+  .post-link:hover .post-title { opacity: 0.65; }
+
+  .post-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .post-title {
+    font-size: 15px;
+    font-weight: 700;
+    flex: 1;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    transition: opacity 0.15s;
+  }
+
+  .post-date {
+    color: var(--muted);
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .post-arrow {
+    color: var(--muted);
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .post-cat {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 1px 8px;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .post-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+</style>
