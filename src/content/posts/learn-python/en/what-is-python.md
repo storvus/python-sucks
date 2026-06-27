@@ -4,8 +4,6 @@ pubDate: 2026-06-27 18:07:14
 description: "When people say, 'I write Python', they're usually referring to two different things at once. The first is the 'Python language' itself. The second is 'the program that can execute that code'."
 tags: ["python", "interpreter", "CPython", "REPL", "script.py", "print"]
 ---
-# What Does It Mean to "Run Python"?
-
 When people say, **"I write Python,"** they're usually referring to two different things at once.
 
 The first is the **Python language** itself - a set of rules that defines how Python code is written.
@@ -119,7 +117,7 @@ The REPL is a great place to experiment and try things out.
 
 ---
 
-## The Second Way: Running a Python File
+## The Second Way: Running a Script
 
 Most Python code is stored in files.
 

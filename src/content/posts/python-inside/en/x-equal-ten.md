@@ -4,6 +4,7 @@ pubDate: 2026-06-03 20:03:01
 description: 'At first glance it sounds obvious. We imagine a variable as a box in memory where you put a value. But Python works a little differently - and understanding that difference explains a lot.'
 tags: ["python", "objects", "types"]
 ---
+> We assume you already know how to write simple Python programs and understand basic syntax (if, for, functions, lists). Here, we're not discussing how to use the language, but why it works the way it does.
 
 If you ask a beginner what this line of code does:
 ```python

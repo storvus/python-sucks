@@ -4,6 +4,8 @@ pubDate: 2026-06-20 14:35:26
 description: 'Python divides all objects into two large groups. The first group is called mutable objects. The second is immutable objects.'
 tags: ["python", "types", "immutable", "mutable"]
 ---
+> We assume you already know how to write simple Python programs and understand basic syntax (if, for, functions, lists). Here, we're not discussing how to use the language, but why it works the way it does.
+
 In the previous article, we discovered something interesting.
 
 Lists can be modified:

@@ -4,6 +4,8 @@ pubDate: 2026-06-17 17:17:17
 description: "It almost looks as if Python somehow 'links' variables together. But that's not what's happening."
 tags: ["python", "types", "immutable", "mutable"]
 ---
+> We assume you already know how to write simple Python programs and understand basic syntax (if, for, functions, lists). Here, we're not discussing how to use the language, but why it works the way it does. 
+
 The previous article, we saw something that can seem quite surprising at first:
 ```python
 a = [1, 2]

@@ -4,6 +4,8 @@ pubDate: 2026-06-22 15:41:15
 description: "If you ask a beginner what the difference is between is and ==, you'll often hear something like `==` compares values, while `is` compares references."
 tags: ["python", "types", "is", "equal", "comparison"]
 ---
+> We assume you already know how to write simple Python programs and understand basic syntax (if, for, functions, lists). Here, we're not discussing how to use the language, but why it works the way it does.
+
 If you ask a beginner what the difference is between `is` and `==`, you'll often hear something like this:
 
 > "`==` compares values, while `is` compares references."
