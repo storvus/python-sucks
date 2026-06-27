@@ -3,6 +3,10 @@ export const CATEGORIES: Record<string, Record<string, string>> = {
     ru: 'Внутри Python',
     en: 'Inside Python',
   },
+  'learn-python': {
+    ru: 'Учим Python',
+    en: 'Learn Python',
+  },
 };
 
 export function getCategoryLabel(slug: string | null | undefined, locale = 'ru'): string {

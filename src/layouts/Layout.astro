@@ -38,7 +38,7 @@ const enPath = `/en${ruPath}`;
       <a href={locale === 'ru' ? '/' : '/en/'} class="logo">python sucks &gt;_</a>
       <div class="nav-right">
         <a href={locale === 'ru' ? '/all-posts' : '/en/all-posts'}>{t('nav.articles')}</a>
-        <a href="https://programming-motherfucker.com/">{t('nav.manifesto')}</a>
+        <a href="https://programming-motherfucker.com/" rel="nofollow" target="_blank">{t('nav.manifesto')}</a>
         <a href={langSwitchUrl} class="lang-switch">{t('nav.lang-switch')}</a>
         <button class="icon-btn theme-toggle" aria-label="Toggle theme" title="Toggle dark mode">
           <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
