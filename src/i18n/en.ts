@@ -7,6 +7,8 @@ export default {
   'posts.heading': '> all articles',
   'posts.filter-all': 'All',
   'post.back': '< back to home',
+  'post.prev': '← prev article',
+  'post.next': 'next article →',
   'footer.tagline': 'Honest about Python.\nNo hype, no rose-colored glasses.',
   'category.none': 'Uncategorized',
 } as const;

@@ -4,16 +4,27 @@ import Layout from '../../layouts/Layout.astro';
 import { useTranslations } from '../../i18n/index';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
-  return posts
+  const allPosts = await getCollection('posts');
+  const posts = allPosts
     .filter(p => p.id.split('/')[1] === 'ru')
-    .map(post => {
-      const [cat, , slug] = post.id.split('/');
-      return { params: { slug: `${cat}/${slug}` }, props: { post } };
-    });
+    .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+
+  return posts.map((post) => {
+    const [cat, , slug] = post.id.split('/');
+    const sameCat = posts.filter(p => p.id.split('/')[0] === cat);
+    const i = sameCat.indexOf(post);
+    const prev = i > 0 ? sameCat[i - 1] : null;
+    const next = i < sameCat.length - 1 ? sameCat[i + 1] : null;
+    return { params: { slug: `${cat}/${slug}` }, props: { post, prev, next } };
+  });
 }
 
-const { post } = Astro.props;
+const { post, prev, next } = Astro.props;
+
+const getPostUrl = (p: NonNullable<typeof prev>) => {
+  const [cat, , slug] = p.id.split('/');
+  return `/posts/${cat}/${slug}/`;
+};
 const { Content } = await render(post);
 const t = useTranslations('ru');
 
@@ -31,6 +42,20 @@ const formatDate = (date: Date) =>
     <div class="post-content">
       <Content />
     </div>
+    <nav class="post-nav">
+      {prev && (
+        <a href={getPostUrl(prev)} class="post-nav-link post-nav-prev">
+          <span class="post-nav-label">{t('post.prev')}</span>
+          <span class="post-nav-title">{prev.data.title}</span>
+        </a>
+      )}
+      {next && (
+        <a href={getPostUrl(next)} class="post-nav-link post-nav-next">
+          <span class="post-nav-label">{t('post.next')}</span>
+          <span class="post-nav-title">{next.data.title}</span>
+        </a>
+      )}
+    </nav>
   </article>
 </Layout>
 
@@ -121,4 +146,39 @@ const formatDate = (date: Date) =>
     color: var(--muted);
     margin: 1.5em 0;
   }
+
+  .post-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .post-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 45%;
+  }
+
+  .post-nav-next {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .post-nav-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .post-nav-title {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .post-nav-link:hover .post-nav-title { opacity: 0.7; }
 </style>
