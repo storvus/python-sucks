@@ -2,7 +2,7 @@
 title: 'Why Does a List Change in Two Variables?'
 pubDate: 2026-06-10 20:58:08
 description: "In the previous article, we learned that variables in Python don't store data themselves. Instead, a name simply refers to an object. With numbers, this feels quite intuitive. But as soon as we start working with lists, Python's behavior often surprises people."
-tags: ["python", "list",]
+tags: ["python", "list"]
 ---
 > We assume you already know how to write simple Python programs and understand basic syntax (if, for, functions, lists). Here, we're not discussing how to use the language, but why it works the way it does.
 
