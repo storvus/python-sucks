@@ -5,7 +5,7 @@ description: "Many people expect `+=` to simply change a variable. But if you in
 tags: ["python", "types", "immutable", "mutable"]
 ---
 
-> This article assumes you're already comfortable writing simple Python programs and know the basics (`if`, `for`, functions, and lists). Here we're not learning **how** to use Python—we're learning **why** it behaves the way it does.
+> This article assumes you're already comfortable writing simple Python programs and know the basics (`if`, `for`, functions, and lists). Here we're not learning **how** to use Python - we're learning **why** it behaves the way it does.
 
 Try to guess what this code prints.
 
@@ -53,7 +53,7 @@ If you've followed the previous articles, the answer is already within reach.
 
 We know two important things:
 
-- a name doesn't store an object—it simply refers to one;
+- a name doesn't store an object - it simply refers to one;
 - Python has both mutable and immutable objects.
 
 The second point turns out to be the key.

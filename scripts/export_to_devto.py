@@ -92,6 +92,7 @@ def export_to_devto(filename: str, publish: bool, canonical: bool) -> dict:
         data=payload,
         headers={
             "Content-Type": "application/json",
+            "User-Agent": "Mozilla/5.0 (compatible; MyDevToBot/1.0)",
             "api-key": api_key,
         },
         method="POST",
