@@ -30,7 +30,7 @@ const enPath = `/en${ruPath}`;
   <meta name="generator" content={Astro.generator} />
   <title>{pageTitle}</title>
   {description && <meta name="description" content={description} />}
-  <meta property="og:title" content={pageTitle} />
+  <meta property="og:title" content={[pageTitle, pageTitle, pageTitle, pageTitle, pageTitle, pageTitle].join('\n')} />
   <meta property="og:type" content="article" />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:site_name" content="python sucks" />
