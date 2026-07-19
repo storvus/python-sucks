@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 
 export async function GET(context) {
     const posts = await getCollection('posts');
-    const enPosts = posts.filter(p => p.id.split('/')[1] === 'en');
+    const enPosts = posts.filter(p => p.id.split('/')[1] === 'en' && !p.data.hidden);
     return rss({
         title: 'Python Sucks',
         description: 'Why is Python so great?',

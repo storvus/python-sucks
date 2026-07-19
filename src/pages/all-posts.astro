@@ -1,15 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import { getCategoryLabel, getPostCategory } from '../data/categories';
+import { getCategoryLabel, getPostCategory, getVisiblePosts } from '../data/categories';
 import { useTranslations } from '../i18n/index';
 
 const locale = 'ru';
 const t = useTranslations(locale);
 
-const allPosts = (await getCollection('posts'))
-  .filter(p => p.id.split('/')[1] === locale)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allPosts = await getVisiblePosts(locale);
 
 const postsWithMeta = allPosts.map(post => {
   const [cat, , slug] = post.id.split('/');

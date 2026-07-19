@@ -1,6 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
-import { getCategoryLabel, getPostCategory } from '../data/categories';
+import { getCategoryLabel, getPostCategory, getVisiblePosts } from '../data/categories';
 import { useTranslations, type Locale } from '../i18n/index';
 
 interface Props {
@@ -10,9 +9,7 @@ interface Props {
 const { limit = 5, locale = 'ru' } = Astro.props;
 const t = useTranslations(locale);
 
-const allPosts = (await getCollection('posts'))
-  .filter(p => p.id.split('/')[1] === locale)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allPosts = await getVisiblePosts(locale);
 const posts = allPosts.slice(0, limit);
 const hasMore = allPosts.length > limit;
 

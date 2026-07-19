@@ -30,9 +30,11 @@ const t = useTranslations('ru');
 
 const formatDate = (date: Date) =>
   new Date(date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const ogImage = new URL(`/og/ru/${Astro.params.slug}.png`, Astro.site).href;
 ---
 
-<Layout pageTitle={post.data.title} locale="ru">
+<Layout pageTitle={post.data.title} description={post.data.description} ogImage={ogImage} locale="ru">
   <article class="post">
     <div class="post-header">
       <a href="/" class="back">{t('post.back')}</a>

@@ -30,9 +30,11 @@ const t = useTranslations('en');
 
 const formatDate = (date: Date) =>
   new Date(date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const ogImage = new URL(`/og/en/${Astro.params.slug}.png`, Astro.site).href;
 ---
 
-<Layout pageTitle={post.data.title} locale="en">
+<Layout pageTitle={post.data.title} description={post.data.description} ogImage={ogImage} locale="en">
   <article class="post">
     <div class="post-header">
       <a href="/en/" class="back">{t('post.back')}</a>

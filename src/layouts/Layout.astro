@@ -3,10 +3,13 @@ import { useTranslations, type Locale } from '../i18n/index';
 
 interface Props {
   pageTitle: string;
+  description?: string;
+  ogImage?: string;
   locale?: Locale;
 }
 
-const { pageTitle, locale = 'ru' } = Astro.props;
+const { pageTitle, description, ogImage, locale = 'ru' } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, 'https://blog.storv.us').href;
 const t = useTranslations(locale);
 
 const currentPath = Astro.url.pathname;
@@ -26,6 +29,18 @@ const enPath = `/en${ruPath}`;
   <link rel="icon" href="/favicon.ico" />
   <meta name="generator" content={Astro.generator} />
   <title>{pageTitle}</title>
+  {description && <meta name="description" content={description} />}
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content="python sucks" />
+  <meta property="og:locale" content={locale === 'ru' ? 'ru_RU' : 'en_US'} />
+  {description && <meta property="og:description" content={description} />}
+  {ogImage && <meta property="og:image" content={ogImage} />}
+  <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+  <meta name="twitter:title" content={pageTitle} />
+  {description && <meta name="twitter:description" content={description} />}
+  {ogImage && <meta name="twitter:image" content={ogImage} />}
   <link rel="alternate" hreflang="ru" href={`https://blog.storv.us${ruPath}`} />
   <link rel="alternate" hreflang="en" href={`https://blog.storv.us${enPath}`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
