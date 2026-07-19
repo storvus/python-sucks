@@ -30,17 +30,17 @@ const enPath = `/en${ruPath}`;
   <meta name="generator" content={Astro.generator} />
   <title>{pageTitle}</title>
   {description && <meta name="description" content={description} />}
-  <meta property="og:title" content={[pageTitle, pageTitle, pageTitle, pageTitle, pageTitle, pageTitle].join('\n')} />
+  <meta property="og:title" content={pageTitle} />
   <meta property="og:type" content="article" />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:site_name" content="python sucks" />
   <meta property="og:locale" content={locale === 'ru' ? 'ru_RU' : 'en_US'} />
-  {description && <meta property="og:description" content={[description, description, description, description].join('\n')} />}
-  <meta property="og:image" content="https://blog.storv.us/images/snake.png" />
-  <meta property="twitter:image" content="https://blog.storv.us/images/snake.png" />
+  {description && <meta property="og:description" content={description} />}
+  {ogImage && <meta property="og:image" content={ogImage} />}
   <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
   <meta name="twitter:title" content={pageTitle} />
-  {description && <meta name="twitter:description" content={[description, description, description, description].join('\n')} />}
+  {description && <meta name="twitter:description" content={description} />}
+  {ogImage && <meta name="twitter:image" content={ogImage} />}
   <link rel="alternate" hreflang="ru" href={`https://blog.storv.us${ruPath}`} />
   <link rel="alternate" hreflang="en" href={`https://blog.storv.us${enPath}`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
